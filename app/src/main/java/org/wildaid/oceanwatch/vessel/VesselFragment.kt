@@ -11,12 +11,9 @@ import com.google.android.material.snackbar.Snackbar
 
 import org.wildaid.oceanwatch.R
 import org.wildaid.oceanwatch.databinding.VesselFragmentBinding
+import org.wildaid.oceanwatch.util.getViewModelFactory
 
 class VesselFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = VesselFragment()
-    }
 
     private lateinit var viewDataBinding: VesselFragmentBinding
 
@@ -27,7 +24,8 @@ class VesselFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(this).get(VesselViewModel::class.java)
+        viewModel =
+            ViewModelProviders.of(this, getViewModelFactory()).get(VesselViewModel::class.java)
 
         val root = inflater.inflate(R.layout.vessel_fragment, container, false)
         viewDataBinding = VesselFragmentBinding.bind(root).apply {

@@ -3,6 +3,7 @@
     package="org.wildaid.oceanwatch">
 
     <application
+        android:name=".OceanWatchApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
