@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Ocean Watch</string>
+    <string name="btn_next">Next</string>
+    <string name="vessel_name">Vessel Name</string>
+    <string name="vessel">Vessel</string>
+    <string name="vessel_information">Vessel Information</string>
+    <string name="permit_number">Permit Number</string>
+    <string name="home_port">Home Port</string>
+    <string name="last_date_of_delivery">Last date of delivery</string>
+    <string name="date">Date</string>
+    <string name="business">Business</string>
+    <string name="location">Location</string>
+    <string name="nationality">Nationality</string>
+    <string name="electronic_monitoring_system">Electronic Monitoring System</string>
+    <string name="ems_type">EMS Type</string>
+    <string name="registry_number">Registry Number</string>
 </resources>
