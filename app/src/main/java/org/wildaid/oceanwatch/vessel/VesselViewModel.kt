@@ -2,8 +2,12 @@ package org.wildaid.oceanwatch.vessel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.realm.RealmList
 import org.wildaid.oceanwatch.data.Repository
-import org.wildaid.oceanwatch.data.Vessel
+import org.wildaid.oceanwatch.data.Boat
+import org.wildaid.oceanwatch.data.Delivery
+import org.wildaid.oceanwatch.data.Ems
+import java.time.LocalDate
 
 class VesselViewModel(private val repository: Repository) : ViewModel() {
     val vesselName = MutableLiveData<String>()
@@ -21,21 +25,31 @@ class VesselViewModel(private val repository: Repository) : ViewModel() {
     val snackbarText = MutableLiveData<String>()
 
     fun onNextClick() {
-        repository.saveVessel(createVessel())
+        repository.saveBoat(createBoat())
         snackbarText.value = "To be implemented"
     }
 
-    private fun createVessel(): Vessel {
-        return Vessel(
-            vesselName.value,
-            permitNumber.value,
-            homePort.value,
-            nationality.value,
-            date.value,
-            business.value,
-            location.value,
-            emsType.value,
-            registeryNumber.value
+    private fun createBoat(): Boat {
+        return Boat(
+            name = vesselName.value,
+            homePort = homePort.value,
+            nationality = nationality.value,
+            permitNumber = permitNumber.value,
+            lastDelivery = createDelivery(),
+            ems = createEms()
+        )
+    }
+
+    private fun createEms(): RealmList<Ems> {
+        //todo
+        return RealmList<Ems>()
+    }
+
+    private fun createDelivery(): Delivery {
+        return Delivery(
+            date = LocalDate.parse(date.value),
+            business = business.value,
+            location = location.value
         )
     }
 }
