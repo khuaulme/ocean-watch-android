@@ -5,6 +5,6 @@ import android.util.Log
 class RealmRepository : Repository {
     override fun saveBoat(boat: Boat) {
         //todo implement
-        Log.d("repo", boat.name)
+        Log.d("repo", boat.name ?: "noname")
     }
 }

@@ -2,7 +2,7 @@ package org.wildaid.oceanwatch.data
 
 import io.realm.RealmList
 import io.realm.RealmObject
-import java.time.LocalDate
+import java.util.*
 
 open class Boat(
     var name: String? = "",
@@ -10,8 +10,8 @@ open class Boat(
     var nationality: String? = "",
     var permitNumber: String? = "",
     var licenseNumber: String? = "",
-    var ems: RealmList<Ems>?,
-    var lastDelivery: Delivery,
+    var ems: RealmList<Ems>? = null,
+    var lastDelivery: Delivery? = null,
     var other: RealmList<OtherAttribute>? = null
 ) : RealmObject()
 
@@ -22,7 +22,7 @@ open class Ems(
 ) : RealmObject()
 
 open class Delivery(
-    var date: LocalDate?,
+    var date: Date? = null,
     var location: String? = "",
     var business: String? = "",
     var other: RealmList<OtherAttribute>? = null

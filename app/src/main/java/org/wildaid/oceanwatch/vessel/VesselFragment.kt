@@ -1,48 +1,30 @@
 package org.wildaid.oceanwatch.vessel
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-
 import org.wildaid.oceanwatch.R
 import org.wildaid.oceanwatch.databinding.VesselFragmentBinding
 import org.wildaid.oceanwatch.util.getViewModelFactory
 
-class VesselFragment : Fragment() {
+class VesselFragment : Fragment(R.layout.vessel_fragment) {
+    private val fragmentViewModel: VesselViewModel by viewModels { getViewModelFactory() }
 
     private lateinit var viewDataBinding: VesselFragmentBinding
 
-    private lateinit var viewModel: VesselViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        viewModel =
-            ViewModelProviders.of(this, getViewModelFactory()).get(VesselViewModel::class.java)
-
-        val root = inflater.inflate(R.layout.vessel_fragment, container, false)
-        viewDataBinding = VesselFragmentBinding.bind(root).apply {
-            this.viewmodel = viewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewDataBinding = VesselFragmentBinding.bind(view).apply {
+            this.viewmodel = fragmentViewModel
+            this.lifecycleOwner = this@VesselFragment.viewLifecycleOwner
         }
 
-        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
-        return viewDataBinding.root
+        fragmentViewModel.snackbarText.observe(viewLifecycleOwner, Observer(::showSnackBarMessage))
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        viewModel.snackbarText.observe(
-            viewLifecycleOwner,
-            Observer {
-                Snackbar.make(view!!, viewModel.snackbarText.value!!, Snackbar.LENGTH_LONG).show()
-            })
+    private fun showSnackBarMessage(message: String) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).show()
     }
 }

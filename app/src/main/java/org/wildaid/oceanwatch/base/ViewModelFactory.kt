@@ -1,4 +1,4 @@
-package org.wildaid.oceanwatch
+package org.wildaid.oceanwatch.base
 
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory

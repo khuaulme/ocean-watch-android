@@ -1,8 +1,6 @@
-package org.wildaid.oceanwatch
+package org.wildaid.oceanwatch.data
 
 import android.content.Context
-import org.wildaid.oceanwatch.data.RealmRepository
-import org.wildaid.oceanwatch.data.Repository
 
 object ServiceLocator {
 
@@ -11,7 +9,11 @@ object ServiceLocator {
 
     fun provideRepository(context: Context): Repository {
         synchronized(this) {
-            return repository ?: repository ?: createRepository(context)
+            return repository
+                ?: repository
+                ?: createRepository(
+                    context
+                )
         }
     }
 

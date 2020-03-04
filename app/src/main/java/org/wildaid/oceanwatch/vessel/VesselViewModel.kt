@@ -7,7 +7,7 @@ import org.wildaid.oceanwatch.data.Repository
 import org.wildaid.oceanwatch.data.Boat
 import org.wildaid.oceanwatch.data.Delivery
 import org.wildaid.oceanwatch.data.Ems
-import java.time.LocalDate
+import java.util.*
 
 class VesselViewModel(private val repository: Repository) : ViewModel() {
     val vesselName = MutableLiveData<String>()
@@ -47,7 +47,8 @@ class VesselViewModel(private val repository: Repository) : ViewModel() {
 
     private fun createDelivery(): Delivery {
         return Delivery(
-            date = LocalDate.parse(date.value),
+            //todo parse date
+            date = Date(System.currentTimeMillis()),
             business = business.value,
             location = location.value
         )
